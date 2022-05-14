@@ -72,17 +72,17 @@ def print_error(mystr):
 float_check_error = 'Please enter a whole number (example: "23"), or a float (example: "23.99")'
 int_check_error = 'Please enter a whole number (example: "23")'
 tip_too_low = '\n\nYour total tip is less than $5.00.\nRegardless of the total bill, please be considerate of service workers who are\nworking very hard to give you the creature comforts you\'re enjoying...'
-
 bill_split = False
 tip_split = False
-
 tip_lang = ''
 bill_lang = ''
 grand_total = ''
 tip_warn = ''
 the_math = ''
 
+# Start script
 print("Hey! You need help with your tip? I'll help you figure it out!")
+
 # ask for bill amount
 answered = False
 while not answered:
@@ -103,6 +103,7 @@ while not answered:
     else:
         answered = True
         break
+
 # if percent
 if tip_type == 'a':
     answered = False
@@ -167,6 +168,7 @@ if split_option_tip:
         else:
             print_error(int_check_error + "\n** ZERO IS NOT ALLOWED **")
 
+# splitting bill
 split_option_bill = input("Would You like to split the bill? Please answer 'y' for yes or any other key for no.\n")
 split_option_bill = convert_y_to_bool(split_option_bill)
 if split_option_bill:
@@ -179,6 +181,7 @@ if split_option_bill:
             break
         else:
             print_error(int_check_error + "\n** ZERO IS NOT ALLOWED **")
+
 # Do Calculations
 # percent calc
 if tip_type == 'a':
@@ -200,6 +203,7 @@ if tip_type == 'c':
     the_math = 'Difference: ' + str(return_currency(float(greater_than_bill))) + ' - ' + str(return_currency(float(total_bill))) + ' = ' + str(return_currency(tip)) + '.'
     if less_than(tip, 5):
         tip_warn = tip_too_low
+
 # splitting calc
 # tip split calc
 if tip_split and tip_split > 0:
@@ -207,14 +211,17 @@ if tip_split and tip_split > 0:
     tip_lang = "The original " + str(return_currency(tip)) + " tip was split by " + str(tip_split) + "\nYou now owe " + str(return_currency(split_tip) + ".")
 else:
     tip_lang = 'Your calculated tip is: ' + str(return_currency(tip)) + "."
+
 # bill split calc
 if bill_split and bill_split > 0:
     split_bill = total_bill / bill_split
     bill_lang = 'The original ' + return_currency(total_bill) + ' bill was split by ' + str(bill_split) + '\nYou now owe ' + return_currency(split_bill) + '.'
 else:
     bill_lang = 'Your bill is ' + return_currency(total_bill) + '.'
+
 # grand total calc
 grand_total = 'Your grand total is ' + return_currency(total_bill + tip) + '. This reflects the FULL bill total + the FULL tip amount regardless of splitting.'
+
 # print results
 print(the_math)
 print(tip_lang)
