@@ -63,7 +63,7 @@ def less_than_message(suggestion, special_char):
     if special_char == '%':
         percentsign = '%'
     name = random.choice(list_of_names)
-    return CRED+'Kind of a dick move, ' + name + '.' + CEND +' Would you like to reconsider? Maybe something higher than ' + dollarsign + str(suggestion) + percentsign + '?\nEnter "y" to adjust the amount, or click Enter to continue.\n'
+    return f'{CRED}Kind of a dick move, {name}.{CEND} Would you like to reconsider? Maybe something higher than {dollarsign}{suggestion}{percentsign}\nEnter "y" to adjust the amount, or click Enter to continue.\n'
 
 def print_error(mystr):
     print(CRED + str(mystr) + CEND)
@@ -144,7 +144,7 @@ elif tip_type == 'b':
 elif tip_type == 'c':
     answered = False
     while not answered:
-        greater_than_bill = input("Please enter an amount greater that the bill total: " + str(total_bill) + "?\n")
+        greater_than_bill = input(f"Please enter an amount greater that the bill total: {total_bill}?\n")
         if isfloat(greater_than_bill):
             if greater_than(float(greater_than_bill), total_bill):
                 greater_than_bill = float(greater_than_bill)
@@ -186,21 +186,21 @@ if split_option_bill:
 # percent calc
 if tip_type == 'a':
     tip = (total_bill * int(percent_of_bill))/100
-    the_math = 'Percent: ' + return_currency(total_bill) + " * " + str(percent_of_bill) + ' / 100 = ' + return_currency(tip)
+    the_math = f'Percent: {return_currency(total_bill)} * {percent_of_bill} / 100 = {return_currency(tip)}'
     if less_than(tip, 5):
         tip_warn = tip_too_low
 
 # add to calc
 if tip_type == 'b':
     tip = int(add_to_bill)
-    the_math = 'Adding to bill: $' + add_to_bill + ". This function is really just used to get a total + tip = grand total for credit card receipts."
+    the_math = f'Adding to bill: ${add_to_bill}. This function is really just used to get a total + tip = grand total for credit card receipts.'
     if less_than(tip, 5):
         tip_warn = tip_too_low
 
 # difference of calc
 if tip_type == 'c':
     tip = float(greater_than_bill) - float(total_bill)
-    the_math = 'Difference: ' + str(return_currency(float(greater_than_bill))) + ' - ' + str(return_currency(float(total_bill))) + ' = ' + str(return_currency(tip)) + '.'
+    the_math = f'Difference: {return_currency(float(greater_than_bill))} - {return_currency(float(total_bill))} = {return_currency(tip)}.'
     if less_than(tip, 5):
         tip_warn = tip_too_low
 
@@ -208,19 +208,19 @@ if tip_type == 'c':
 # tip split calc
 if tip_split and tip_split > 0:
     split_tip = tip / tip_split
-    tip_lang = "The original " + str(return_currency(tip)) + " tip was split by " + str(tip_split) + "\nYou now owe " + str(return_currency(split_tip) + ".")
+    tip_lang = f"The original {return_currency(tip)} tip was split by {tip_split}\nYou now owe {return_currency(split_tip)}."
 else:
-    tip_lang = 'Your calculated tip is: ' + str(return_currency(tip)) + "."
+    tip_lang = f'Your calculated tip is: {return_currency(tip)}.'
 
 # bill split calc
 if bill_split and bill_split > 0:
     split_bill = total_bill / bill_split
-    bill_lang = 'The original ' + return_currency(total_bill) + ' bill was split by ' + str(bill_split) + '\nYou now owe ' + return_currency(split_bill) + '.'
+    bill_lang = f'The original {return_currency(total_bill)} bill was split by {bill_split}\nYou now owe {return_currency(split_bill)}.'
 else:
-    bill_lang = 'Your bill is ' + return_currency(total_bill) + '.'
+    bill_lang = f'Your bill is {return_currency(total_bill)}.'
 
 # grand total calc
-grand_total = 'Your grand total is ' + return_currency(total_bill + tip) + '. This reflects the FULL bill total + the FULL tip amount regardless of splitting.'
+grand_total = f'Your grand total is {return_currency(total_bill + tip)}. This reflects the FULL bill total + the FULL tip amount regardless of splitting.'
 
 # print results
 print(the_math)
