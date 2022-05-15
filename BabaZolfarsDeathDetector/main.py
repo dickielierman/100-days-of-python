@@ -21,7 +21,7 @@ def pause(t=1):
 fake = Faker()
 random_info_url = "https://hiveword.com/papi/random/"
 for_the_best_text = 'Probably for the best. Good bye.'
-promtDefault_text = 'Type "y" to continue, or hit Enter to quit'
+promtDefault_text = 'Type "y", then hit Enter to continue, or just hit Enter to quit'
 # location_url_country should be "" to have any random country
 location_url = "locationNames?"
 location_url_country = "country=US"
