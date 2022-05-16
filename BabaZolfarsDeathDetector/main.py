@@ -78,13 +78,15 @@ else:
         print()
         pause(3)
         print('Do you want to know who you are going to be with?')
-        q = input(promtDefault_text + ', seriously, kid. One one will judge you')
+        q = input(promtDefault_text + ', seriously kid, no one will judge you')
         if q != 'y':
             print()
             print(for_the_best_text)
             print()
         else:
+            print()
             print(killer)
+            print()
             pause(3)
             print('Do you want to know what it all means?')
             q = input(promtDefault_text)
