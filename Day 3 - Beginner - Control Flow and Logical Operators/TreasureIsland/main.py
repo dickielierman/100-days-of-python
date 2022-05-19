@@ -1,8 +1,5 @@
-import time
-
-
-def pause(t=1):
-    time.sleep(t)
+import art
+from my_funcs import clear, pause
 
 
 def yes_or_no(question):
@@ -18,26 +15,23 @@ def yes_or_no(question):
         return False
 
 
-def printAsciiPanel(name):
-    print(open(f'ascii/{name}.txt', 'r').read())
-
-
-printAsciiPanel("blank")
-printAsciiPanel('treasure-island-welcome')
+clear()
+print(art.treasure_island_welcome)
 print("Welcome to Treasure Island.")
 print("Your mission is to find the treasure.")
 print()
 if not yes_or_no("Do you think you have what it takes?"):
-    printAsciiPanel('ship-sailing-away')
+    clear()
+    print(art.ship_sailing_away)
     print()
     print("Fair enough then, matey! Fair thee well")
 else:
-    printAsciiPanel("blank")
+    clear()
     print("Good to hear lad!")
     print("Here's the thing bout that tho...")
     pause(2)
     print("\n\n")
-    printAsciiPanel("treasure-map")
+    print(art.treasure_map)
     print("\n\nGots no idea how to read this map.")
     print("Should we go to that volcano, or look by the beach?")
     pause(1)
@@ -48,18 +42,18 @@ else:
         direction = input("Type 'volcano' or 'beach'? ").lower().strip()
 
     if direction.lower()[0] == 'v':
-        printAsciiPanel("blank")
-        printAsciiPanel("volcano")
+        clear()
+        print(art.volcano)
         print()
         pause(2)
         print("Well at din't work out s'well. Ya Died.")
         print("I guess it's back to the drawing board.")
         pause(4)
-        printAsciiPanel("blank")
-        printAsciiPanel("the-end")
+        clear()
+        print(art.the_end)
     else:
-        printAsciiPanel("blank")
-        printAsciiPanel("beach")
+        clear()
+        print(art.beach)
         print()
         pause(2)
         print("Arh, we made it safe n' sound!")
@@ -73,20 +67,20 @@ else:
             print()
             direction = input("Type 'climb' or 'beach'? ").lower().strip()
         if direction.lower()[0] == 'b':
-            printAsciiPanel("blank")
-            printAsciiPanel("cliff")
+            clear()
+            print(art.cliff)
             print()
             print("Ya fell off a cliff into the ocean.")
             pause(2)
-            printAsciiPanel("blank")
+            clear()
             pause(1)
-            printAsciiPanel("death")
+            print(art.death)
             pause(4)
-            printAsciiPanel("blank")
-            printAsciiPanel("the-end")
+            clear()
+            print(art.the_end)
         else:
-            printAsciiPanel("blank")
-            printAsciiPanel("treasure")
+            clear()
+            print(art.treasure)
             print()
             print()
             pause(2)
@@ -104,7 +98,7 @@ else:
                 print()
                 door = input("'a', 'b', or 'c'? ").lower().strip()
             if door == 'a' or door == "c":
-                printAsciiPanel("blank")
+                clear()
                 if door == 'a':
                     print("Can't trust a pirate that ain't willin' to take his fair share matey!")
                 if door == 'b':
@@ -112,34 +106,34 @@ else:
                     print("Well, you met yer match, and now you'll meet your maker!")
                     pause(2)
                 pause(1)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight1")
+                clear()
+                print(art.fight[0])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight2")
+                clear()
+                print(art.fight[1])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight3")
+                clear()
+                print(art.fight[2])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight2")
+                clear()
+                print(art.fight[1])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight1")
+                clear()
+                print(art.fight[0])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight2")
+                clear()
+                print(art.fight[1])
                 pause(.5)
-                printAsciiPanel("blank")
-                printAsciiPanel("fight3")
+                clear()
+                print(art.fight[2])
                 pause(.5)
-                printAsciiPanel("blank")
+                clear()
                 pause(1)
-                printAsciiPanel("death")
+                print(art.death)
                 pause(4)
-                printAsciiPanel("blank")
-                printAsciiPanel("the-end")
+                clear()
+                print(art.the_end)
             elif door == 'b':
-                printAsciiPanel("blank")
-                printAsciiPanel('treasure-island-welcome')
+                clear()
+                print(art.treasure_island_welcome)
                 print("\nWell How bout that! We did it! We found the treasure together!")
