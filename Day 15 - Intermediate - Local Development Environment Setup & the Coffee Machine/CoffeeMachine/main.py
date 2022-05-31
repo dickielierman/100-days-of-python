@@ -72,18 +72,21 @@ Money: $2.5
 
 
 # TODO: Check resources sufficient?
-def resource_check(selection, resources):
+def resource_check(selection, suppress_print=False):
     """a. When the user chooses a drink, the program should check if there are enough resources to make that drink.
 b. E.g. if Latte requires 200ml water but there is only 100ml left in the machine. It should not continue to make the drink but print: “Sorry there is not enough water.”
 c. The same should happen if another resource is depleted, e.g. milk or coffee."""
     if not resources["water"] >= MENU[selection]["ingredients"]["water"]:
-        print("Sorry, not enough water to complete this order.")
+        if not suppress_print:
+            print("Sorry, not enough water to complete this order.")
         return False
     elif ("milk" in MENU[selection]["ingredients"]) and not resources["milk"] >= MENU[selection]["ingredients"]["milk"]:
-        print("Sorry, not enough milk to complete this order.")
+        if not suppress_print:
+            print("Sorry, not enough milk to complete this order.")
         return False
     elif not resources["coffee"] >= MENU[selection]["ingredients"]["coffee"]:
-        print("Sorry, not enough coffee to complete this order.")
+        if not suppress_print:
+            print("Sorry, not enough coffee to complete this order.")
         return False
     else:
         return True
@@ -105,7 +108,7 @@ def process_coins(cost):
         nickles = int(my_input('How many nickles?', [], 'int'))
         pennies = int(my_input('How many pennies?', [], 'int'))
         total_entered = total_entered + (.25 * quarters) + (.10 * dimes) + (.05 * nickles) + (.01 * pennies)
-        if total_entered < cost:
+        if not total_entered >= cost:
             needed_to_complete = cost - total_entered
             print(f"You've inserted {'${:,.2f}'.format(total_entered)}. You need to insert {'${:,.2f}'.format(needed_to_complete)} to complete your order.")
             continue_order = my_input("Would you like to continue 'c' or quit 'q'? ", ['c', 'q'])
@@ -153,6 +156,23 @@ def get_paid():
     resources["money"] = 0
 
 
+def get_drink_list():
+    restriction_list = []
+    selection_text = ''
+    first = ''
+    for drink in MENU:
+        if resource_check(drink, True):
+            selection_text += f"{first}'{drink}' {'${:,.2f}'.format(MENU[drink]['cost'])}"
+            first = ', '
+            if drink == 'espresso':
+                restriction_list += [drink, 'e']
+            elif drink == 'latte':
+                restriction_list += [drink, 'l']
+            elif drink == 'cappuccino':
+                restriction_list += [drink, 'c']
+    return [selection_text, restriction_list]
+
+
 resources = {
     "water": 300,
     "milk": 200,
@@ -169,7 +189,8 @@ while machine_power:
     # a. Check the user’s input to decide what to do next.
     # b. The prompt should show every time action has completed, e.g. once the drink is
     # dispensed. The prompt should show again to serve the next customer.
-    user_selection = my_input(f'What would you like? (espresso {"${:,.2f}".format(MENU["espresso"]["cost"])}/latte {"${:,.2f}".format(MENU["latte"]["cost"])}/cappuccino {"${:,.2f}".format(MENU["cappuccino"]["cost"])}): ', ['espresso', 'e', 'latte', 'l', 'cappuccino', 'c'], 'str', ['report', 'r', 'off', 'o', 'refill', '$'])
+    dlist = get_drink_list()
+    user_selection = my_input(f'What would you like? ({dlist[0]}): ', dlist[1], 'str', ['report', 'r', 'off', 'o', 'refill', '$']).lower()
     if user_selection in ['off', 'o']:
         clear()
         machine_power = False
@@ -187,7 +208,7 @@ while machine_power:
             user_selection = 'latte'
         elif user_selection in ['cappuccino', 'c']:
             user_selection = 'cappuccino'
-        if resource_check(user_selection, resources):
+        if resource_check(user_selection):
             # TODO: Check transaction successful?
             # a. Check that the user has inserted enough money to purchase the drink they selected.
             # E.g Latte cost $2.50, but they only inserted $0.52 then after counting the coins the
