@@ -1,0 +1,61 @@
+body{
+	background-color:#b9b6b6;
+	font-family: sans-serif;
+}
+
+a{
+	color: mediumvioletred;
+}
+
+hr{
+	display:block;
+	float:none;
+}
+
+h1, h2, h3, h4{
+	color:white;
+}
+
+input[type="text"],input[type="email"],textarea{
+	min-width:400px;
+}
+
+button{
+    min-width:100%;
+}
+
+.header-container{
+	display: flex;
+}
+
+.header-child{
+
+}
+
+.header-child:first-child {
+    margin-right: 20px;
+}
+
+.main-page-image-container{
+	flex: 1;
+}
+
+.main-page-header-text-container{
+	flex: 5;
+}
+
+.main-page-image-container>img{
+	max-width: 250px;
+}
+
+.logo{
+	background-color:#b9b6b6;
+}
+
+.main-page-name{
+
+}
+
+. main-page-title{
+
+}

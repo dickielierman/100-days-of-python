@@ -1,0 +1,171 @@
+/*
+blue = #06113C
+orange = #FF8C32
+lgrey = #EEEEEE
+dgrey = #DDDDDD
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+/***********************************************TAGS*************************************************/
+
+body {
+  background-color: #dddddd;
+  padding: 0;
+  margin: 0;
+  color: #06113c;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Indie Flower', cursive;
+}
+
+h2 {
+  color: #06113c;
+  font-size: 3em;
+}
+hr {
+  display: none;
+}
+
+a {
+  color: #ff8c32;
+  font-family: 'Indie Flower', cursive;
+}
+
+/***********************************************Header Elements*************************************************/
+
+.top-card {
+  text-align: center;
+  margin: 0;
+  padding: 200px;
+  color: #eeeeee;
+  min-height: 300px;
+  background-color: #06113c;
+  background-image: url('../images/main-page-card.png'), url('../images/cloud2.png'), url('../images/cloud.png');
+  background-position: center bottom, center bottom, center bottom;
+  background-repeat: no-repeat, repeat-x, repeat-x;
+}
+
+.title {
+  font-size: 6rem;
+  margin: 0;
+  padding: 0;
+}
+
+.tag-line {
+  position: relative;
+  left: 60px;
+  font-size: 2.5rem;
+  color: #ff8c32;
+  margin: 0;
+  padding: 0;
+}
+
+.cloud-1 {
+  position: absolute;
+  width: 20%;
+  left: 155px;
+  top: 60px;
+}
+
+.cloud-2 {
+  position: absolute;
+  width: 20%;
+  right: 60px;
+  top: 140px;
+}
+
+/***********************************************Middle Elements*************************************************/
+
+.middle-container {
+  text-align: center;
+  width: 100%;
+  margin: auto;
+}
+
+.profile {
+  width: 800px;
+  margin: auto;
+  padding: 100px;
+}
+
+.skills {
+  padding: 100px;
+  background-color: #eeeeee;
+}
+
+.skills-inner {
+  margin: auto;
+}
+
+.skill-row {
+  width: 50%;
+  display: inline-block;
+  /* margin: auto; */
+}
+.clear {
+  width: 100%;
+  float: none;
+}
+.skill-row > p {
+  /* text-align: left; */
+  width: 50%;
+  display: inline-block;
+}
+.float-left {
+  float: left;
+}
+.contact-me {
+  width: 800px;
+  margin: auto;
+  padding: 100px;
+  font-size: 1.5rem;
+}
+
+.contact-me a {
+  text-decoration: none;
+}
+
+/***********************************************Footer Elements*************************************************/
+
+.bottom-container {
+  font-family: 'Indie Flower', cursive;
+  text-align: center;
+  padding: 20px;
+  background-color: #06113c;
+}
+
+.bottom-container p {
+  color: #eeeeee;
+  margin: 5px auto;
+}
+
+.bottom-container a {
+  font-size: 1.5rem;
+  margin: 60px;
+  text-decoration: none;
+}
+.contact-me-btn {
+  margin-top: 60px;
+}
+
+.btn {
+  color: #eeeeee;
+  padding: 4px 20px;
+  border: 1px solid #06113c;
+  border-radius: 3px;
+  background-image: linear-gradient(#ffb781, #ff8c32);
+  display: inline-block;
+}
+.btn:hover {
+  background-image: linear-gradient(#ff8c32, #d15b00);
+}
+.btn:active {
+  background-image: linear-gradient(#d15b00, #ff8c32);
+}
