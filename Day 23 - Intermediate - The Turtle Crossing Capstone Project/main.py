@@ -5,10 +5,11 @@ from car_manager import CarManager
 from scoreboard import Scoreboard
 from the_road import TheRoad
 
+
 screen = Screen()
-screen.setup(width=600, height=600)
+screen.setup(width=600, height=620)
 screen.tracer(0)
-the_road = TheRoad()
+the_road = TheRoad(600, 600)
 scoreboard = Scoreboard()
 player = Player()
 car_manager = CarManager()

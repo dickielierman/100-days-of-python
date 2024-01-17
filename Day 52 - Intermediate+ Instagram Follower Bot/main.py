@@ -10,7 +10,7 @@ searcher = 'pattonoswalt'
 
 class InstagramBot:
     def __init__(self):
-        self.driver = SELENIUM_BROWSER("chrome")
+        self.driver = SELENIUM_BROWSER("chrome", True)
         self.driver.implicitly_wait(10)  # seconds
         self.driver.maximize_window()
 
