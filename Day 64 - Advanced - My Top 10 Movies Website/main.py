@@ -5,10 +5,12 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, DecimalField
 from wtforms.validators import DataRequired
 import requests
-from env import *
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 ##CREATE DATABASE
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///favorite-movies-collection.db"
 #Optional: But it will silence the deprecation warning in the console.
@@ -63,7 +65,7 @@ def add_movie():
     if form.validate_on_submit():
         movie_title = form.title.data
 
-        response = requests.get(MOVIE_DB_SEARCH_URL, params={"api_key": MOVIE_DB_API_KEY, "query": movie_title})
+        response = requests.get(os.environ.get('MOVIE_DB_SEARCH_URL'), params={"api_key": os.environ.get('MOVIE_DB_API_KEY'), "query": movie_title})
         data = response.json()["results"]
         return render_template("select.html", options=data)
     return render_template("add.html", form=form)
@@ -73,13 +75,13 @@ def add_movie():
 def find_movie():
     movie_api_id = request.args.get("id")
     if movie_api_id:
-        movie_api_url = f"{MOVIE_DB_INFO_URL}/{movie_api_id}"
-        response = requests.get(movie_api_url, params={"api_key": MOVIE_DB_API_KEY, "language": "en-US"})
+        movie_api_url = f"{os.environ.get('MOVIE_DB_INFO_URL')}/{movie_api_id}"
+        response = requests.get(movie_api_url, params={"api_key": os.environ.get('MOVIE_DB_API_KEY'), "language": "en-US"})
         data = response.json()
         new_movie = Movie(
             title=data["title"],
             year=data["release_date"].split("-")[0],
-            img_url=f"{MOVIE_DB_IMAGE_URL}{data['poster_path']}",
+            img_url=f"{os.environ.get('MOVIE_DB_IMAGE_URL')}{data['poster_path']}",
             description=data["overview"]
         )
         db.session.add(new_movie)

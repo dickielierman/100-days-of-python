@@ -1,0 +1,53 @@
+{% from "bootstrap5/form.html" import render_form %} {% block content %} {%
+include "header.html" %}
+
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="background-image: url('../static/assets/img/register-bg.png')"
+>
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="page-heading">
+          <h1>Register</h1>
+          <span class="subheading">Start Contributing to the Blog!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="mb-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+      <!--Rendering the registration form here-->
+      <form
+        id="registerForm"
+            name="register"
+            action="{{ url_for('register') }}"
+            method="post"
+        >
+          <h1 class="h3 mb-3 fw-normal">Register now!</h1>
+        <div class="form-floating">
+            <input type="text" name="name" class="form-control" id="floatingName" placeholder="Joe Dirte">
+            <label for="floatingName">Name</label>
+          </div>
+          <div class="form-floating">
+            <input type="email" name="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+            <label for="floatingEmail">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+          </div>
+          <br />
+          <button class="btn btn-primary text-uppercase" type="submit">Create an account</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% include "footer.html" %} {% endblock %}

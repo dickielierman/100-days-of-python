@@ -2,9 +2,11 @@ from flask import Flask, render_template
 import requests as req
 from post import Post
 app = Flask(__name__)
-
-
-posts = req.get(f'https://api.npoint.io/9c946fb7a2d5ce85db78').json()
+import os
+from dotenv import load_dotenv
+load_dotenv()
+key = os.environ.get('NPOINTIO')
+posts = req.get(f'https://api.npoint.io/{key}').json()
 post_objects = [Post(post["id"], post["title"], post["subtitle"], post["body"]) for post in posts]
 
 

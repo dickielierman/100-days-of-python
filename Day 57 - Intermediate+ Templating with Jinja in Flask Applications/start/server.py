@@ -2,9 +2,11 @@ from flask import Flask, render_template
 from datetime import datetime as dt
 import random
 import requests as req
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-
-
+key = os.environ.get('NPOINTIO')
 COPYRIGHT_YEAR = dt.now().year
 
 app = Flask(__name__)
@@ -39,7 +41,7 @@ def guess_page(name):
 
 @app.route('/blog')
 def blog_page():
-    blog = req.get(f'https://api.npoint.io/9c946fb7a2d5ce85db78').json()
+    blog = req.get(f'https://api.npoint.io/{key}').json()
     print(blog)
     return render_template(
         'blog.html',
@@ -50,7 +52,7 @@ def blog_page():
     )
 @app.route('/blog/<id>')
 def single_blog_page(id):
-    blog = req.get(f'https://api.npoint.io/9c946fb7a2d5ce85db78').json()
+    blog = req.get(f'https://api.npoint.io/{key}').json()
     return render_template(
         'blog.html',
         page_data={

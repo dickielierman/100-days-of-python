@@ -5,9 +5,11 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired, Email, Length, URL
 import sqlite3
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get('FLASK_APP_SECRET_KEY')
 ##CREATE DATABASE
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///new-books-collection.db"
 #Optional: But it will silence the deprecation warning in the console.
