@@ -167,5 +167,5 @@ cython_debug/
 venv
 .vscode
 env.py
-.zip
-.ipynb
+*.zip
+*.ipynb
